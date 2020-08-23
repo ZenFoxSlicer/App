@@ -1,0 +1,59 @@
+<mat-toolbar color="primary" fxFLex>
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap=15px fxLayoutAlign="start center">
+      <span>App</span>
+      <button mat-icon-button (click)="toggleSideNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-button (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="mat-side-nav-container-style">
+  <mat-sidenav fxFlex="330px" mode="side" [(opened)]="opened" class="menu" [fixedInViewport]="false" fxLayout="column"
+    fxLayoutGap="10px">
+    <mat-nav-list>
+      <a [routerLink]="[ '/home/dashboard' ]">
+        <mat-list-item>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-icon color=primary>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </div>
+        </mat-list-item>
+      </a>
+      <a [routerLink]="[ '/home/table' ]">
+        <mat-list-item>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-icon color=primary>table_chart</mat-icon>
+            <span>Table</span>
+          </div>
+        </mat-list-item>
+      </a>
+      <a [routerLink]="[ '/home/form' ]">
+        <mat-list-item>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-icon color=primary>description</mat-icon>
+            <span>Form</span>
+          </div>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxFlex="100">
+    <!-- <button *ngIf="!opened" mat-icon-button class="open-menu-button" (click)="toggleSideNav()" mat-button>
+      <mat-icon color=disabled>menu</mat-icon>
+    </button> -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+<!-- <a [routerLink]="[ '/home/table' ]">Here</a>
+
+<router-outlet></router-outlet> -->

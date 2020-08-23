@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div fxFlex="80" fxLayout="column" [formGroup]="userForm" fxLayoutGap="20px">
+    <mat-form-field fxFlex fxFlexOffset="15px">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+      <mat-error *ngIf="!!userForm.controls['name'].hasError('required')">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput>
+      <mat-error *ngIf="!!userForm.controls['email'].hasError('email')">
+        Invalid email format
+      </mat-error>
+      <mat-error *ngIf="!!userForm.controls['email'].hasError('required')">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <ckeditor formControlName="description" [editor]="Editor" [config]="{placeholder: 'Description'}"></ckeditor>
+    <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="onSubmit()">Submit</button>
+    <div *ngIf="formValue" fxLayout="column">
+      <h2>Form value</h2>
+      <label>Name: {{formValue.name}}</label>
+      <label>Email: {{formValue.email}}</label>
+      <label>Description: {{formValue.description ? formValue.description : ''}}</label>
+    </div>
+  </div>
+</div>
