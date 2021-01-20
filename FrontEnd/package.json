@@ -29,6 +29,7 @@
     "canvasjs": "github:vasilrimar/canvasjs",
     "core-js": "^2.6.11",
     "hammerjs": "^2.0.8",
+    "node-sass": "^4.14.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.13.0",
     "zone.js": "~0.8.26"

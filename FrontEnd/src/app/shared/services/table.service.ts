@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Employee } from '../models/employee.model';
 
 
 @Injectable({
@@ -18,6 +19,14 @@ export class TableService {
     this.baseUrl = configService.getApiURI();
   }
   getData(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + '/table/table-data');
+    return this.http.get<any>(`${this.baseUrl}/people`);
+  }
+
+  addEmployee(employee: Employee): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/people`, employee);
+  }
+
+  deleteEmployee(employeeName: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/people/${employeeName}`);
   }
 }

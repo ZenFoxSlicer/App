@@ -7,28 +7,11 @@ import { Employee } from '../shared/models/employee.model';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpResponse<LoginResult>> {
-
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     switch (true) {
       case request.url.endsWith('auth/login'):
         {
           return of(new HttpResponse<LoginResult>({ body: { authToken: 'fake-jwt-token' } }));
-        }
-      case request.url.endsWith('table/table-data'):
-        {
-          const employees: Employee[] = [
-            { position: 'Worker', name: 'Jack Rundal', yearsWorked: 1, age: 25 },
-            { position: 'Worker', name: 'Michael Morra', yearsWorked: 4, age: 23 },
-            { position: 'manager', name: 'Jane Jass', yearsWorked: 6, age: 26 },
-            { position: 'Manager', name: 'Mike Lokt', yearsWorked: 9, age: 35 },
-            { position: 'Worker', name: 'James Krill', yearsWorked: 10, age: 25 },
-            { position: 'Director', name: 'Lourel Loin', yearsWorked: 12, age: 51 },
-            { position: 'Worker', name: 'Betty Kin', yearsWorked: 14, age: 31 },
-            { position: 'Worker', name: 'Mike Long', yearsWorked: 15, age: 56 },
-            { position: 'Manager', name: 'Jasper Knight', yearsWorked: 18, age: 45 },
-            { position: 'Top Manager', name: 'Nina Moore', yearsWorked: 20, age: 55 },
-          ];
-          return of(new HttpResponse<any>({ body: employees }));
         }
       case request.url.endsWith('dashboard/pie-chart-data'):
         {
@@ -56,7 +39,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return of(new HttpResponse<any>({ body: response }));
         }
     }
-    return of(null);
+    return next.handle(request);
   }
 }
 

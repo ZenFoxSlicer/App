@@ -8,6 +8,30 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field fxFlex fxFlexOffset="15px">
+      <mat-label>Position</mat-label>
+      <input formControlName="position" matInput>
+      <mat-error *ngIf="!!userForm.controls['position'].hasError('required')">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex fxFlexOffset="15px">
+      <mat-label>Years Worked</mat-label>
+      <input type="number" formControlName="yearsWorked" matInput>
+      <mat-error *ngIf="!!userForm.controls['yearsWorked'].hasError('required')">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex fxFlexOffset="15px">
+      <mat-label>Age</mat-label>
+      <input type="number" formControlName="age" matInput>
+      <mat-error *ngIf="!!userForm.controls['age'].hasError('required')">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field fxFlex>
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput>
@@ -19,13 +43,19 @@
       </mat-error>
     </mat-form-field>
 
-    <ckeditor formControlName="description" [editor]="Editor" [config]="{placeholder: 'Description'}"></ckeditor>
+
+    <!-- <ckeditor formControlName="description" [editor]="Editor" [config]="{placeholder: 'Description'}"></ckeditor> -->
     <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="onSubmit()">Submit</button>
-    <div *ngIf="formValue" fxLayout="column">
+    <!-- <div *ngIf="formValue" fxLayout="column">
       <h2>Form value</h2>
       <label>Name: {{formValue.name}}</label>
       <label>Email: {{formValue.email}}</label>
       <label>Description: {{formValue.description ? formValue.description : ''}}</label>
+    </div> -->
+    <div *ngIf="errors">
+      {{errors}}
     </div>
+    <div>{{clock}}</div>
+
   </div>
 </div>
